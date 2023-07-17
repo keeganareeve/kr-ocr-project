@@ -1,3 +1,7 @@
+'''
+Default pdf filepath and output directory can be edited in the __init__() function of the eddirs class.
+'''
+
 # import PyPDF2
 from PyPDF2 import PdfReader
 from pdf2image import convert_from_path
