@@ -1,5 +1,9 @@
 '''
-I'm going to use this script to block out images etc.
+This script puts boxes around text given an image.
+
+image_filepath can be an image file of a page from a pdf file.
+
+output_file should be an image file or filepath.
 '''
 
 # Packages to import
@@ -9,7 +13,7 @@ import numpy
 import cv2  # OpenCV, for identifying "structure"
 
 if len(sys.argv) < 2:
-    image_filepath = "temp/page66.png"
+    image_filepath = ""
 else:
     image_filepath = sys.argv[1]
 
