@@ -1,7 +1,7 @@
 '''
 Converts a pdf file to a list of lines of text.
 To run this script:
-    python3 ocr-v3.py {pdf filepath} {outputdir}
+    python3 pdf2lines.py {pdf filepath} {outputdir}
 
 (first need to check whether this method works)
 

@@ -7,10 +7,12 @@ Can run in virtual environment after running this command:
     (this file gets the python packages from requirements.txt)
 
 To run this script: (excluding the brackets)
-    python3 ocr-v2.py [rmpat=]{TRUE/FALSE} [pdfdir=]{pdf filepath} [outputdir]={outputdir}
+    python3 pdf2parasAndSents.py [rmpat=]{TRUE/FALSE} [pdfdir=]{pdf filepath} [outputdir]={outputdir}
 (make sure to use make the format 
-    `python3 ocr-v2.py rmpat=FALSE pdfdir=/home/.../ outputdir=/home/.../'
+    `python3 pdf2parasAndSents.py rmpat=FALSE pdfdir=/home/.../ outputdir=/home/.../'
       without spaces in any other positions and avoiding use of tildes)
+
+The `rmpat=TRUE' argument condition will delete sequences in the patterns 01 * word or word * 01. This pattern can be changed by editing the pattern in the rmpat() function in the cleanstr class in myfunctions.py.
 '''
 
 import PyPDF2

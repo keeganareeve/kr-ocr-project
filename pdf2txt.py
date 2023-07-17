@@ -1,7 +1,9 @@
 '''
 Converts a pdf file to a text file.
 To run this script:
-    python3 ocr-v1.py rmpat={TRUE/FALSE} {pdf filepath} {outputdir}
+    python3 pdf2txt.py rmpat={TRUE/FALSE} {pdf filepath} {outputdir}
+
+ The `rmpat=TRUE' argument condition will delete sequences in the patterns 01 * word or word * 01. This pattern can be changed by editing the pattern in the rmpat() function in the cleanstr class in myfunctions.py.
 '''
 import sys
 
