@@ -2,8 +2,11 @@
 This script puts boxes around text given an image.
 
 image_filepath can be an image file of a page from a pdf file.
-
 output_file should be an image file or filepath.
+
+To run this script: (excluding the brackets)
+  `python3 bounding_boxes-v2.py {image_filepath} {outputfile}'
+  (default values for these two arguments can be set in the script below)
 '''
 
 # Packages to import
