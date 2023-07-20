@@ -1,38 +1,73 @@
 '''
-This script puts boxes around text given an image, excluding the margins of the image.
-Modified version of bounding_boxes.py with this added condition.
+This script puts boxes around text given an image.
 
 image_filepath can be an image file of a page from a pdf file.
 output_file should be an image file or filepath.
 
-To run this script: (excluding the brackets)
-  `python3 bounding_boxes-v2.py {image_filepath} {outputfile}'
-  (default values for these two arguments can be set in the script below)
+
+To run this script:
+    python3 bounding_boxes-v2.py image_filepath {OUTPUT_FILE=}[filename] X_MIN=[INT] Y_MIN=[INT]
+
+(The arguments OUTPUT_FILE, X_MIN, and Y_MIN, are optional, and the OUTPUT_FILE argument can be anywhere after the image_filepath and does not even need to be labeled with OUTPUT_FILE= in front of it.)
 '''
 
 # Packages to import
 import sys
-import pytesseract
-import numpy
 import cv2  # OpenCV, for identifying "structure"
 
-if len(sys.argv) < 2:
-    image_filepath = ""
-else:
-    image_filepath = sys.argv[1]
+print(sys.argv)
 
+image_filepath = sys.argv[1]
+default_output_file = "temp/index_boundingBoxes.png"
+
+for item in sys.argv[2:]:
+
+    if item[0:len("X_MIN=")] == "X_MIN=":
+        x_min_distance = item[len("X_MIN="):]
+        x_min_distance = int(x_min_distance)
+    else:
+        x_min_distance = 130
+
+    if item[0:len("Y_MIN=")] == "Y_MIN=":
+        y_min_distance = item[len("Y_MIN="):]
+        y_min_distance = int(y_min_distance)
+    else:
+        y_min_distance = x_min_distance  # 150 seems to work well too
+
+# If 2 argvs or fewer, there cannot be an output argv there.
+output_file = ""
 if len(sys.argv) < 3:
-    output_file = "temp/index_boundingBoxes.png"
-else:
-    output_file = sys.argv[2]
+    output_file += default_output_file
+
+elif len(sys.argv) >= 3:
+
+    for item in sys.argv[3:]:
+        if item[0:len("OUTPUT_FILE=")] == "OUTPUT_FILE=":
+            output_file += str(item[len("OUTPUT_FILE"):])
+
+    if not sys.argv[2][0:len("X_MIN=")] == "X_MIN=":
+        if not sys.argv[2][0:len("Y_MIN=")] == "Y_MIN=":
+            output_file += str(sys.argv[2])
+
+    if output_file == "":
+        output_file += default_output_file
+
+# Printing arguments
+print("------------------------------------")
+print(f"Image filepath defined as {image_filepath}")
+print(f"X_MIN distance defined as {x_min_distance}")
+print(f"Y_MIN distance defined as {y_min_distance}")
+print(f"OUTPUT_FILE defined as {output_file}")
+print("------------------------------------")
 
 # Reading image from filepath
 original_image = cv2.imread(image_filepath)
-x_length = original_image.shape[0]
-y_length = original_image.shape[1]
+x_length, y_length, z_length = original_image.shape
+# x_length = original_image.shape[0]
+# y_length = original_image.shape[1]
 print(f"Length of x-axis on the original image: {x_length}")
 print(f"Length of y-axis on the original image: {y_length}")
-min_distance = 130
+print(f"Length of z-axis(?) on the original image: {z_length}")
 
 # Cropping doesn't seem to help with the purpose we have in mind, but it does work here if you want to test it:
 # cropped_image = original_image[min_distance:x_length -
@@ -75,9 +110,10 @@ contours = sorted(contours, key=lambda x: cv2.boundingRect(x)[1])
 for contour in contours:
     xValue, yValue, width, height = cv2.boundingRect(contour)
 
-    if height < 200 and xValue in range(min_distance, x_length - min_distance) and yValue in range(min_distance, y_length):
+    if height < 200 and xValue in range(y_min_distance, x_length - x_min_distance) and yValue in range(y_min_distance, y_length):
         cv2.rectangle(original_image, (xValue, yValue),
-                      (xValue+width, yValue+height), (0, 0, 255), 2)
+                      (xValue+width, yValue+height), (0, 255, 0), 2)
 
 # Output
 cv2.imwrite(output_file, original_image)
+print(f"Wrote image to {output_file}.")
