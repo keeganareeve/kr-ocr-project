@@ -48,6 +48,7 @@ Modified version of bounding_boxes.py with this added condition.
 image_filepath can be an image file of a page from a pdf file.
 output_file should be an image file or filepath.
 
-To run this script: (excluding the brackets)
-  `python3 bounding_boxes-v2.py {image_filepath} {outputfile}'
-  (default values for these two arguments can be set in the script below)
+To run this script:
+    python3 bounding_boxes-v2.py image_filepath {OUTPUT_FILE=}[filename] X_MIN=[INT] Y_MIN=[INT]
+
+(The arguments OUTPUT_FILE, X_MIN (distance on x-axis from edge), and Y_MIN (distance on y-axis from edge), are optional, and the OUTPUT_FILE argument can be anywhere after the image_filepath and does not even need to be labeled with OUTPUT_FILE= in front of it.)
