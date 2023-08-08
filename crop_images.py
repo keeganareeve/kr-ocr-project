@@ -10,10 +10,7 @@ If both input and output directories are ommitted, they will be assumed to be th
 
 import sys
 import os
-
-import pytesseract
 import numpy as np
-import imutils
 import cv2
 
 
@@ -131,7 +128,7 @@ for file in filelist:
     x, y, w, h = cv2.boundingRect(np.asarray(arr))
     image_copy = cv2.imread(image_path)
     cv2.rectangle(
-        image_copy, (x, y), (x+w, y+h), (0, 0, 255), 1)
+        image_copy, (x, y), (x+w, y+h), (0, 255, 0), 1)
 
     # STEP 7: Cropping them
     output_filepath = image_directory+'cropped'+file
