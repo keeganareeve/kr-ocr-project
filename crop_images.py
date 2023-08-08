@@ -127,8 +127,8 @@ for file in filelist:
 
     x, y, w, h = cv2.boundingRect(np.asarray(arr))
     image_copy = cv2.imread(image_path)
-    cv2.rectangle(
-        image_copy, (x, y), (x+w, y+h), (0, 255, 0), 1)
+    # cv2.rectangle(
+    #    image_copy, (x, y), (x+w, y+h), (0, 255, 0), 1)
 
     # STEP 7: Cropping them
     output_filepath = image_directory+'cropped'+file
