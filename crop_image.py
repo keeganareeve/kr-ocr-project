@@ -1,7 +1,7 @@
 '''
 To run:
-    python3 crop_image.py <image_directory> <image_name> <output_filepath>
-            sys.argv[0]   sys.argv[1]       sys.argv[2]  sys.argv[3]
+    python3 crop_image.py <image_filepath> <output_filepath>
+            sys.argv[0]   sys.argv[1]       sys.argv[2]
 '''
 
 # STEP 1
@@ -10,19 +10,15 @@ To run:
 # Path to your image file
 import sys
 import os
-
-import pytesseract
 import numpy as np
-import imutils
 import cv2
 
 # STEP 2
 # '/content/gdrive/MyDrive/ImageFiles/inputForCropping/page66.png'
-image_directory = str(sys.argv[1])
-image_name = str(sys.argv[2])
-output_filepath = str(sys.argv[3])
+image_filepath = str(sys.argv[1])
+image_name = str(os.path.basename(image_filepath))
+output_filepath = str(sys.argv[2])
 
-image_filepath = image_directory+image_name
 original_image = cv2.imread(image_filepath)
 
 # STEP 2
@@ -31,7 +27,6 @@ original_image = cv2.imread(image_path)
 
 x_min_distance = 130
 y_min_distance = 150
-
 
 original_image = cv2.imread(image_path)
 x_length, y_length, z_length = original_image.shape
@@ -79,8 +74,8 @@ for x, y, w, h in rectTuples:
 
 x, y, w, h = cv2.boundingRect(np.asarray(arr))
 image_copy = cv2.imread(image_path)
-cv2.rectangle(
-    image_copy, (x, y), (x+w, y+h), (0, 0, 255), 1)
+# cv2.rectangle(
+#    image_copy, (x, y), (x+w, y+h), (0, 0, 255), 1)
 
 # STEP 7: Cropping it
 cropped_image = image_copy[y:y+h, x:x+w]
