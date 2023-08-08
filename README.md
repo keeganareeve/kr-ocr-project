@@ -52,3 +52,13 @@ To run this script:
     python3 bounding_boxes-v2.py image_filepath {OUTPUT_FILE=}[filename] X_MIN=[INT] Y_MIN=[INT]
 
 (The arguments OUTPUT_FILE, X_MIN (distance on x-axis from edge), and Y_MIN (distance on y-axis from edge), are optional, and the OUTPUT_FILE argument can be anywhere after the image_filepath and does not even need to be labeled with OUTPUT_FILE= in front of it.)
+
+### crop_image.py ###
+Makes one image that is cropped from an image in order to capture the part of the image with text, for single image.
+
+cv2.rectangle function that is commented out will result in red rectanges (mmay be used to keep track of which script was used where)
+
+### crop_images.py ###
+Makes one image that is cropped from an image in order to capture the part of the image with text, for the png image files found in an entire directory (top part of directory).
+
+cv2.rectangle function that is commented out will result in green rectanges (mmay be used to keep track of which script was used where)
