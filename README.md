@@ -6,7 +6,7 @@ Converts a pdf file to a text file.
 To run this script: 
  ```python3 pdf2txt.py [rmpat=]{TRUE/FALSE} {pdf filepath} {outputdir} ```
 
- The `rmpat=TRUE' argument condition will delete sequences in the patterns 01 * word or word * 01. This pattern can be changed by editing the pattern in the rmpat() function in the cleanstr class in myfunctions.py.
+ The ```rmpat=TRUE ``` argument condition will delete sequences in the patterns 01 * word or word * 01. This pattern can be changed by editing the pattern in the rmpat() function in the cleanstr class in myfunctions.py.
 
 ### pdf2parasAndSents.py ###
 Converts a pdf file to a list of paragraphs and a list of sentences.  
@@ -22,7 +22,7 @@ To run this script: (excluding the brackets)
  ```python3 pdf2parasAndSents.py rmpat=FALSE pdfdir=/home/... outputdir=/home/.../  ```
 (without spaces in any other positions and avoiding use of tildes)  
 
-The `rmpat=TRUE' argument condition will delete sequences in the patterns 01 * word or word * 01. This pattern can be changed by editing the pattern in the rmpat() function in the cleanstr class in myfunctions.py.
+The  ```rmpat=TRUE ``` argument condition will delete sequences in the patterns 01 * word or word * 01. This pattern can be changed by editing the pattern in the rmpat() function in the cleanstr class in myfunctions.py.
 
 ### pdf2lines.py ###
 Converts a pdf file to a list of lines of text.
@@ -62,7 +62,7 @@ To run:
 
 ### crop_images.py ###
 Makes one image that is cropped from an image in order to capture the part of the image with text, for the png image files found in an entire directory (top part of directory).
-(cv2.rectangle function that is commented out will result in green rectanges: may be used to keep track of which script was used where)
+( ```cv2.rectangle()``` function that is commented out will result in green rectanges: may be used to keep track of which script was used where)
 
 To run:  
  ```python3 crop_images.py <input_directory> <output_directory> ```
