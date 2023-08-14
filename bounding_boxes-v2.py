@@ -1,5 +1,5 @@
 '''
-This script puts boxes around text given an image.
+This script puts boxes around text given an image (excluding text found near the margins).
 
 image_filepath can be an image file of a page from a pdf file.
 output_file should be an image file or filepath.
