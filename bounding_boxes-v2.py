@@ -2,13 +2,10 @@
 This script puts boxes around text given an image (excluding text found near the margins).
 
 image_filepath can be an image file of a page from a pdf file.
-output_file should be the output directory.
-
-This script produces images of each individual cropped word (often will crop smaller segments than words) in the format cropped_wordN.png (where N stands for a number starting with 0) and an image containing the outermost points of these words' bounding boxes, as cropped_words.png.
-
+output_file should be an image file or filepath.
 
 To run this script:
-    python3 bounding_boxes-v2.py image_filepath output_directory
+    python3 bounding_boxes-v2.py image_filepath {OUTPUT_FILE=}[filename] X_MIN=[INT] Y_MIN=[INT]
 
 (The arguments OUTPUT_FILE, X_MIN, and Y_MIN, are optional, and the OUTPUT_FILE argument can be anywhere after the image_filepath and does not even need to be labeled with OUTPUT_FILE= in front of it.)
 '''
@@ -19,18 +16,47 @@ import cv2  # OpenCV, for identifying "structure"
 
 print(sys.argv)
 
-image_filepath = str(sys.argv[1])
-output_directory = str(sys.argv[2])
+image_filepath = sys.argv[1]
+default_output_file = "temp/index_boundingBoxes.png"
 
-x_min_distance = 130
-y_min_distance = 150
+for item in sys.argv[2:]:
+
+    if item[0:len("X_MIN=")] == "X_MIN=":
+        x_min_distance = item[len("X_MIN="):]
+        x_min_distance = int(x_min_distance)
+    else:
+        x_min_distance = 130
+
+    if item[0:len("Y_MIN=")] == "Y_MIN=":
+        y_min_distance = item[len("Y_MIN="):]
+        y_min_distance = int(y_min_distance)
+    else:
+        y_min_distance = x_min_distance  # 150 seems to work well too
+
+# If 2 argvs or fewer, there cannot be an output argv there.
+output_file = ""
+if len(sys.argv) < 3:
+    output_file += default_output_file
+
+elif len(sys.argv) >= 3:
+
+    for item in sys.argv[3:]:
+        if item[0:len("OUTPUT_FILE=")] == "OUTPUT_FILE=":
+            output_file += str(item[len("OUTPUT_FILE"):])
+
+    if not sys.argv[2][0:len("X_MIN=")] == "X_MIN=":
+        if not sys.argv[2][0:len("Y_MIN=")] == "Y_MIN=":
+            output_file += str(sys.argv[2])
+
+    if output_file == "":
+        output_file += default_output_file
 
 # Printing arguments
 print("------------------------------------")
 print(f"Image filepath defined as {image_filepath}")
 print(f"X_MIN distance defined as {x_min_distance}")
 print(f"Y_MIN distance defined as {y_min_distance}")
-# print(f"OUTPUT_FILE defined as {output_file}")
+print(f"OUTPUT_FILE defined as {output_file}")
 print("------------------------------------")
 
 # Reading image from filepath
@@ -79,20 +105,14 @@ contours = cv2.findContours(
 contours = contours[0] if len(contours) == 2 else contours[1]
 contours = sorted(contours, key=lambda x: cv2.boundingRect(x)[1])
 
-image_copy = cv2.imread(image_filepath)
-i = 0
 # Adding conditions to the rectangles made
 for contour in contours:
     xValue, yValue, width, height = cv2.boundingRect(contour)
 
-    if height < 200 and xValue in range(y_min_distance, x_length - x_min_distance) and yValue in range(y_min_distance, y_length-y_min_distance):
+    if height < 200 and xValue in range(y_min_distance, x_length - x_min_distance) and yValue in range(y_min_distance, y_length):
         cv2.rectangle(original_image, (xValue, yValue),
                       (xValue+width, yValue+height), (0, 255, 0), 2)
-        # Output (as an image for every cropped word)
-        cv2.imwrite(
-            f"{output_directory}cropped_word{i}.png", image_copy[yValue:yValue+height, xValue:xValue+width])
-        print(f"Wrote image to {output_directory}cropped_word{i}.png.")
-        i += 1
-# Output (as one image withbounding boxes shown)
-cv2.imwrite(f"{output_directory}cropped_words.png", original_image)
-print(f"Wrote image to {output_directory}cropped_words.png")
+
+# Output
+cv2.imwrite(output_file, original_image)
+print(f"Wrote image to {output_file}.")
