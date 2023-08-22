@@ -70,4 +70,12 @@ To run:
 (Last argument optional, input_directory argument can be ommitted if output is ommitted.)
 
 ### crop_words.py ### 
-
+This script puts boxes around text given an image (excluding text found near the margins).  
+  
+image_filepath can be an image file of a page from a pdf file.  
+output_file should be the output directory.  
+  
+This script produces images of each individual cropped word (often will crop smaller segments than words) in the format cropped_wordN.png (where N stands for a number starting with 0) and an image containing the outermost points of these words' bounding boxes, as cropped_words.png.  
+  
+To run this script:  
+    ```python3 bounding_boxes-v2.py image_filepath output_directory```  
