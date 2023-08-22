@@ -1,4 +1,6 @@
 '''
+(Requires myfunctions.py to run.)
+
 Converts a pdf file to a text file.
 To run this script:
     python3 pdf2txt.py rmpat={TRUE/FALSE} {pdf filepath} {outputdir}
