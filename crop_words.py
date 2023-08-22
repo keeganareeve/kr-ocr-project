@@ -9,8 +9,6 @@ This script produces images of each individual cropped word (often will crop sma
 
 To run this script:
     python3 bounding_boxes-v2.py image_filepath output_directory
-
-(The arguments OUTPUT_FILE, X_MIN, and Y_MIN, are optional, and the OUTPUT_FILE argument can be anywhere after the image_filepath and does not even need to be labeled with OUTPUT_FILE= in front of it.)
 '''
 
 # Packages to import
