@@ -1,4 +1,6 @@
 '''
+(Requires myfunctions.py to run.)
+
 Converts a pdf file to a list of lines of text.
 To run this script:
     python3 pdf2lines.py {pdf filepath} {outputdir}
