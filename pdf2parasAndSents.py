@@ -1,4 +1,6 @@
 '''
+(Requires myfunctions.py to run.)
+
 Converts a pdf file to a list of paragraphs and a list of sentences.
 Brackets signify that the sequence of characters (variable names) are optional.
 
