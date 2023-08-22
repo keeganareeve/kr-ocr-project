@@ -55,16 +55,19 @@ To run this script:
 (The arguments OUTPUT_FILE, X_MIN (distance on x-axis from edge), and Y_MIN (distance on y-axis from edge), are optional, and the OUTPUT_FILE argument can be anywhere after the image_filepath and does not even need to be labeled with OUTPUT_FILE= in front of it.)
 
 ### crop_image.py ###
-Makes one image that is cropped from an image in order to capture the part of the image with text, for single image.
-(cv2.rectangle function that is commented out will result in red rectanges: may be used to keep track of which script was used where)
+Makes one image that is cropped from an image in order to capture the part of the image with text, for single image, excluding the margins.
+(```cv2.rectangle()``` function that is commented out will result in red rectanges: may be used to keep track of which script was used where.)
 
 To run:  
  ```python3 crop_image.py <image_filepath> <output_filepath> ```
 
 ### crop_images.py ###
-Makes one image that is cropped from an image in order to capture the part of the image with text, for the png image files found in an entire directory (top part of directory).
-( ```cv2.rectangle()``` function that is commented out will result in green rectanges: may be used to keep track of which script was used where)
+Makes one image that is cropped from an image in order to capture the part of the image with text, for the png image files found in an entire directory (top part of directory), excluding the margins.
+( ```cv2.rectangle()``` function that is commented out will result in green rectanges: may be used to keep track of which script was used where.)
 
 To run:  
  ```python3 crop_images.py <input_directory> <output_directory> ```
 (Last argument optional, input_directory argument can be ommitted if output is ommitted.)
+
+### crop_words.py ### 
+
