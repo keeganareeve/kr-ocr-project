@@ -2,9 +2,7 @@
 To run this script:
     python3 pdf_page_to_png.py "pages.pdf" <page_number>  
 
-To-do:
-need examples of non-Latin letter
-also testing text-v-image detection
+Page numbers (represented by filenames of png output files) begin from the number 1.
 '''
 
 import PyPDF2
