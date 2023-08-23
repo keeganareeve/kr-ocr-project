@@ -1,4 +1,6 @@
 '''
+Converts a page from a PDF file to PNG.
+
 To run this script:
     python3 pdf_page_to_png.py "pages.pdf" <page_number>  
 
