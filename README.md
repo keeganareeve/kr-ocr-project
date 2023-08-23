@@ -79,3 +79,19 @@ This script produces images of each individual cropped word (often will crop sma
   
 To run this script:  
     ```python3 bounding_boxes-v2.py image_filepath output_directory```  
+
+
+### pdf_page_to_png.py ###
+Converts a page from a PDF file to PNG.
+
+To run this script:  
+    ```python3 pdf_page_to_png.py "pages.pdf" {page_number}```  
+
+Page numbers (represented by filenames of png output files) begin from the number 1.
+
+
+### pdf_pages_to_png.py ###
+Converts each page of a PDF file into a separate PNG for the PNG files to be used in other scripts.  
+
+To run:  
+    ```python3 pdf_pages_to_png.py {pdf_filepath} {output_directory}```
