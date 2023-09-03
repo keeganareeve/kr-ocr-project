@@ -80,6 +80,12 @@ This script produces images of each individual cropped word (often will crop sma
 To run this script:  
     ```python3 bounding_boxes-v2.py image_filepath output_directory```  
 
+### run_crop_words_as_batch.sh ###
+Run this bash script in order to run crop_words.py over a whole directory, automatically making new directories for each page (as a PNG).
+
+Run with 'bash run_crop_words_as_batch.sh'
+Make sure to change inputdir, input_file, outputdir (variables within the bash file)
+(I have the below as defaults to showcase usage)
 
 ### pdf_page_to_png.py ###
 Converts a page from a PDF file to PNG.
