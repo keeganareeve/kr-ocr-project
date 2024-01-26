@@ -12,7 +12,6 @@ To run this script:
 Converts a pdf file to a list of paragraphs and a list of sentences.  
 Brackets signify that the sequence of characters (variable names) are optional.  
 
-#### (OBSELETE)   
 Can run in virtual environment after running this command:  
  ```{sudo} sh getdependencies.sh ``
 (this file gets the python packages from requirements.txt)  
